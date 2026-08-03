@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilih Tiket - Eksklusif BCA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1A1A1A;
+            --text-muted: #6B7280;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-border: rgba(255, 255, 255, 0.6);
+            --bca-blue: #0033a0;
+            --bca-blue-light: #0056b3;
+            --input-bg: #F7F8FA;
+            --input-border: #E5E7EB;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body {
+            background: linear-gradient(135deg, #B8BBC4 0%, #A4B0BE 15%, #8ED5F7 30%, #8FD9FF 45%, #A9D9C5 60%, #B8E400 80%, #D8F500 100%);
+            min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: 40px 20px 120px;
+            -webkit-font-smoothing: antialiased;
+        }
+        .app-container { width: 100%; max-width: 440px; background: var(--card-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-radius: 32px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15); overflow: hidden; border: 1px solid var(--card-border); padding: 48px 32px; position: relative; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 24px; color: var(--bca-blue); text-decoration: none; font-weight: 700; font-size: 14px; transition: opacity 0.2s ease; }
+        .back-link:hover { opacity: 0.8; }
+        .page-header { text-align: center; margin-bottom: 32px; }
+        .page-header h1 { font-size: 26px; font-weight: 800; color: var(--primary-dark); margin-bottom: 8px; letter-spacing: -0.5px; }
+        .page-header p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+        
+        /* Denah Panggung dengan Gambar */
+        .seating-map { background: #FFFFFF; border-radius: 24px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 36px; border: 1px solid rgba(0,0,0,0.05); }
+        .map-title { text-align: center; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 16px; }
+        .map-image { width: 100%; height: auto; border-radius: 12px; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+
+        /* List Tiket */
+        .ticket-list { display: flex; flex-direction: column; gap: 16px; }
+        .ticket-card { background: #FFFFFF; border: 1.5px solid #E5E7EB; border-radius: 20px; padding: 24px; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+        .ticket-card:hover { border-color: var(--bca-blue); box-shadow: 0 10px 25px rgba(0, 51, 160, 0.1); }
+        .ticket-info { flex: 1; padding-right: 16px; }
+        .ticket-info h3 { font-size: 16px; font-weight: 800; color: var(--primary-dark); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .ticket-info p { font-size: 13px; color: var(--text-muted); }
+        .ticket-action { display: flex; align-items: center; justify-content: flex-end; min-width: 110px; margin-top: 12px; }
+        
+        .price-tag { font-size: 18px; font-weight: 800; color: var(--bca-blue); margin-bottom: 0; text-align: right; }
+        
+        /* Button & Qty Toggle */
+        .btn-select { background: var(--bca-blue); color: white; padding: 10px 20px; border-radius: 10px; border: none; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; transition: all 0.3s ease; width: 100%; }
+        .btn-select:hover { background: var(--bca-blue-light); }
+        
+        .qty-control { display: none; align-items: center; justify-content: space-between; background: #F7F8FA; border: 1px solid #E5E7EB; border-radius: 12px; padding: 4px; width: 100%; }
+        .qty-control.active { display: flex; }
+        .btn-select.hidden { display: none; }
+        
+        .qty-btn { width: 32px; height: 32px; border-radius: 8px; border: none; background: white; color: var(--bca-blue); font-size: 18px; font-weight: 800; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .qty-btn:hover { background: var(--bca-blue); color: white; }
+        .qty-btn:disabled { opacity: 0.3; cursor: not-allowed; background: #eee; color: #999; }
+        .qty-num { font-size: 16px; font-weight: 800; color: var(--primary-dark); min-width: 30px; text-align: center; }
+        
+        .footer-note { margin-top: 32px; text-align: center; font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Floating Checkout Bar */
+        .checkout-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(150%); width: calc(100% - 40px); max-width: 400px; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.8); border-radius: 20px; padding: 16px 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: space-between; gap: 16px; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 100; }
+        .checkout-bar.active { transform: translateX(-50%) translateY(0); }
+        .checkout-info { flex: 1; }
+        .checkout-info p { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .checkout-total { font-size: 20px; font-weight: 800; color: var(--bca-blue); }
+        .btn-checkout { background: linear-gradient(135deg, var(--bca-blue), var(--bca-blue-light)); color: white; padding: 14px 24px; border-radius: 12px; text-decoration: none; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 5px 15px rgba(0, 51, 160, 0.3); transition: all 0.3s ease; }
+        .btn-checkout:hover { transform: scale(1.03); }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <a href="index.html" class="back-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Kembali
+        </a>
+        
+        <div class="page-header">
+            <h1>Eksklusif BCA</h1>
+            <p>Pilih kategori tiket yang tersedia untuk jalur Eksklusif BCA.</p>
+        </div>
+
+        <!-- Denah Asli dari Gambar -->
+        <div class="seating-map">
+            <div class="map-title">Denah Tennis Indoor Senayan</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/2545970d-a326-4b7c-89ed-98ba0d1db670.jpg?auth_key=1885789772-bcff158f6ec84baa9cc025d5c1b2297f-0-68b96428eceb7f9f1d8b06b737e3efff" alt="Denah Tennis Indoor Senayan" class="map-image">
+        </div>
+
+        <div class="ticket-list">
+            <!-- Tiket 1: Festival -->
+            <div class="ticket-card">
+                <div class="ticket-info">
+                    <h3>Teman Tulus Festival</h3>
+                    <p>Kategori Berdiri (Festival)</p>
+                    <div class="price-tag">IDR 750.000</div>
+                    <div class="ticket-action">
+                        <button class="btn-select" id="btn-select-1" onclick="toggleQty(1)">Pilih Tiket</button>
+                        <div class="qty-control" id="qty-control-1">
+                            <button class="qty-btn" onclick="changeQty(1, -1)">−</button>
+                            <span class="qty-num" id="qty-num-1">1</span>
+                            <button class="qty-btn" onclick="changeQty(1, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tiket 2: Tribun Tengah -->
+            <div class="ticket-card">
+                <div class="ticket-info">
+                    <h3>Tribun Tengah</h3>
+                    <p>Kategori Duduk (Tengah)</p>
+                    <div class="price-tag">IDR 725.000</div>
+                    <div class="ticket-action">
+                        <button class="btn-select" id="btn-select-2" onclick="toggleQty(2)">Pilih Tiket</button>
+                        <div class="qty-control" id="qty-control-2">
+                            <button class="qty-btn" onclick="changeQty(2, -1)">−</button>
+                            <span class="qty-num" id="qty-num-2">1</span>
+                            <button class="qty-btn" onclick="changeQty(2, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tiket 3: Tribun Kiri -->
+            <div class="ticket-card">
+                <div class="ticket-info">
+                    <h3>Tribun Kiri</h3>
+                    <p>Kategori Duduk (Sisi Kiri)</p>
+                    <div class="price-tag">IDR 675.000</div>
+                    <div class="ticket-action">
+                        <button class="btn-select" id="btn-select-3" onclick="toggleQty(3)">Pilih Tiket</button>
+                        <div class="qty-control" id="qty-control-3">
+                            <button class="qty-btn" onclick="changeQty(3, -1)">−</button>
+                            <span class="qty-num" id="qty-num-3">1</span>
+                            <button class="qty-btn" onclick="changeQty(3, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tiket 4: Tribun Kanan -->
+            <div class="ticket-card">
+                <div class="ticket-info">
+                    <h3>Tribun Kanan</h3>
+                    <p>Kategori Duduk (Sisi Kanan)</p>
+                    <div class="price-tag">IDR 675.000</div>
+                    <div class="ticket-action">
+                        <button class="btn-select" id="btn-select-4" onclick="toggleQty(4)">Pilih Tiket</button>
+                        <div class="qty-control" id="qty-control-4">
+                            <button class="qty-btn" onclick="changeQty(4, -1)">−</button>
+                            <span class="qty-num" id="qty-num-4">1</span>
+                            <button class="qty-btn" onclick="changeQty(4, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="footer-note">
+            *Harga belum termasuk pajak & biaya admin.<br>
+            Maksimal pembelian 10 tiket per transaksi.
+        </p>
+    </div>
+
+    <!-- Floating Checkout Bar -->
+    <div class="checkout-bar" id="checkout-bar">
+        <div class="checkout-info">
+            <p>Total (<span id="total-tickets">0</span> Tiket)</p>
+            <div class="checkout-total" id="total-price">IDR 0</div>
+        </div>
+        <a href="form-bca.html" class="btn-checkout">Lanjutkan</a>
+    </div>
+
+    <script>
+        // Data Harga BCA
+        const prices = { 1: 750000, 2: 725000, 3: 675000, 4: 675000 };
+        let quantities = { 1: 0, 2: 0, 3: 0, 4: 0 };
+        const MAX_TICKETS = 10;
+
+        function toggleQty(id) {
+            const btnSelect = document.getElementById(`btn-select-${id}`);
+            const qtyControl = document.getElementById(`qty-control-${id}`);
+            const qtyNum = document.getElementById(`qty-num-${id}`);
+
+            if (quantities[id] === 0) {
+                if (getTotalTickets() >= MAX_TICKETS) {
+                    alert("Maksimal pembelian 10 tiket per transaksi.");
+                    return;
+                }
+                quantities[id] = 1;
+                qtyNum.innerText = quantities[id];
+            }
+
+            btnSelect.classList.add('hidden');
+            qtyControl.classList.add('active');
+            updateTotal();
+        }
+
+        function changeQty(id, delta) {
+            let currentVal = quantities[id];
+            let newVal = currentVal + delta;
+
+            if (delta > 0 && getTotalTickets() >= MAX_TICKETS) {
+                alert("Maksimal pembelian 10 tiket per transaksi.");
+                return;
+            }
+
+            if (newVal <= 0) {
+                quantities[id] = 0;
+                document.getElementById(`qty-control-${id}`).classList.remove('active');
+                document.getElementById(`btn-select-${id}`).classList.remove('hidden');
+            } else {
+                quantities[id] = newVal;
+                document.getElementById(`qty-num-${id}`).innerText = newVal;
+            }
+
+            updateTotal();
+        }
+
+        function getTotalTickets() {
+            return Object.values(quantities).reduce((a, b) => a + b, 0);
+        }
+
+        function updateTotal() {
+            let totalQty = getTotalTickets();
+            let totalPrice = 0;
+            
+            for (let id in quantities) {
+                totalPrice += quantities[id] * prices[id];
+            }
+
+            document.getElementById("total-tickets").innerText = totalQty;
+            document.getElementById("total-price").innerText = "IDR " + totalPrice.toLocaleString('id-ID');
+
+            const checkoutBar = document.getElementById("checkout-bar");
+            if (totalQty > 0) {
+                checkoutBar.classList.add("active");
+            } else {
+                checkoutBar.classList.remove("active");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festival Teman Tulus - Syarat & Ketentuan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, 
+                #B8BBC4 0%, #A4B0BE 15%, #8ED5F7 30%, #8FD9FF 45%, 
+                #A9D9C5 60%, #B8E400 80%, #D8F500 100%
+            );
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+        }
+
+        .phone-container {
+            width: 100%;
+            max-width: 430px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 32px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .header-section {
+            padding: 24px 24px 40px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .banner-image {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            margin-bottom: 28px;
+            display: block;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 16px;
+            font-size: 13px;
+            font-weight: 700;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .btn-eksklusif {
+            background: linear-gradient(135deg, #0033a0, #0056b3);
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 51, 160, 0.3);
+        }
+        .btn-eksklusif:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(0, 51, 160, 0.4);
+        }
+
+        .btn-umum {
+            background: linear-gradient(135deg, #D8F500, #B8E400);
+            color: #1a1a1a;
+            box-shadow: 0 8px 20px rgba(184, 228, 0, 0.3);
+        }
+        .btn-umum:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(184, 228, 0, 0.4);
+        }
+
+        .terms-section {
+            padding: 30px 24px;
+        }
+
+        .terms-title {
+            font-size: 18px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .terms-box {
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            padding: 24px;
+            max-height: 450px;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .terms-box::-webkit-scrollbar { width: 5px; }
+        .terms-box::-webkit-scrollbar-track { background: #f4f4f4; border-radius: 10px; }
+        .terms-box::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #8ED5F7, #B8E400);
+            border-radius: 10px;
+        }
+
+        .terms-content p {
+            font-size: 13px;
+            color: #4a4a4a;
+            margin-bottom: 12px;
+            text-align: justify;
+            line-height: 1.7;
+        }
+
+        .terms-content h3 {
+            font-size: 14px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            border-left: 4px solid #B8E400;
+            padding-left: 12px;
+        }
+        
+        .terms-content p strong {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #333;
+            margin-top: 12px;
+            margin-bottom: 8px;
+        }
+
+        .terms-content ul {
+            list-style: none;
+            margin-left: 5px;
+            margin-bottom: 15px;
+        }
+
+        .terms-content li {
+            font-size: 13px;
+            color: #4a4a4a;
+            margin-bottom: 10px;
+            line-height: 1.6;
+            text-align: justify;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .terms-content li::before {
+            content: "•";
+            color: #B8E400;
+            font-weight: bold;
+            font-size: 18px;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        .footer-section {
+            padding: 40px 24px 50px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .footer-label {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #777;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+
+        .footer-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .organizer-logo, .partner-logo {
+            background: white;
+            color: #333;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .customer-service {
+            margin-top: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a1a;
+            padding: 16px;
+            background: white;
+            border: 1px solid #B8E400;
+            border-radius: 16px;
+            display: inline-block;
+            box-shadow: 0 10px 25px rgba(184, 228, 0, 0.15);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .phone-container > * { animation: fadeIn 0.8s ease-out forwards; }
+        .terms-section { animation-delay: 0.2s; }
+        .footer-section { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <header class="header-section">
+            <img src="banner.png" alt="Festival Teman Tulus Banner" class="banner-image">
+            <div class="buttons-container">
+                <a href="form-bca.html" class="btn btn-eksklusif">EKSKLUSIF BCA</a>
+                <a href="form-umum.html" class="btn btn-umum">UMUM</a>
+            </div>
+        </header>
+
+        <main class="terms-section">
+            <h2 class="terms-title">Syarat & Ketentuan Tiket</h2>
+            <div class="terms-box">
+                <div class="terms-content">
+                    <p>Dengan membeli dan/atau menggunakan tiket ini, penonton dianggap telah membaca, memahami, dan menyetujui seluruh Syarat & Ketentuan yang berlaku sebagai bentuk perjanjian yang mengikat antara penonton dan penyelenggara.</p>
+                    <h3>Pembelian Tiket</h3>
+                    <ul>
+                        <li>Tiket hanya dapat dibeli melalui festivaltemantulus.com.</li>
+                        <li>Harga tiket belum termasuk Pajak Hiburan Daerah 10%, Biaya Admin 5%, dan biaya platform pembayaran.</li>
+                        <li>Gunakan data identitas yang sah (KTP, SIM, atau Paspor) saat membeli tiket. Data identitas pada tiket tidak dapat diubah setelah transaksi berhasil dilakukan.</li>
+                        <li>Pada jalur Eksklusif BCA, setiap transaksi hanya dapat membeli maksimal 1 (satu) tiket menggunakan 1 (satu) data diri.</li>
+                        <li>Pada jalur Umum, setiap transaksi hanya dapat membeli maksimal 2 (dua) tiket dengan menggunakan data diri yang berbeda.</li>
+                        <li>Satu tiket berlaku untuk (1) satu orang dan tidak berlaku untuk keluar-masuk (no re-entry).</li>
+                        <li>Tiket ini hanya untuk penggunaan pribadi. Dilarang diperjualbelikan atau digunakan untuk kepentingan komersial.</li>
+                        <li>Seluruh penjualan bersifat final. Tiket yang telah dibeli tidak dapat dikembalikan (refund), ditukar, maupun dialihkan kepemilikannya.</li>
+                    </ul>
+                    <h3>Batasan Usia</h3>
+                    <ul>
+                        <li>Usia 17 tahun ke atas diperbolehkan menonton pertunjukan dan membeli tiket secara mandiri.</li>
+                        <li>Usia 5–16 tahun diperbolehkan menonton pertunjukan dengan pendamping minimal berusia 18 tahun dan wajib memiliki tiket.</li>
+                        <li>Usia 0–5 tahun tidak diperbolehkan masuk ke area pertunjukan.</li>
+                    </ul>
+                    <h3>Keterangan Tiket & Tempat Duduk</h3>
+                    <ul>
+                        <li>Kategori tiket duduk terdiri atas: Teman TULUS Tribun, Tribun Tengah, Tribun Kiri, dan Tribun Kanan.</li>
+                        <li>Kategori tiket berdiri terdiri atas: Teman TULUS Festival dan Festival.</li>
+                    </ul>
+                    <h3>Informasi Fasilitas Kategori Teman TULUS Tribun dan Teman TULUS Festival</h3>
+                    <ul>
+                        <li>Pemegang tiket Teman TULUS Tribun dan Teman TULUS Festival berhak memperoleh fasilitas eksklusif sesuai jadwal yang telah ditentukan oleh penyelenggara.</li>
+                        <li>Seluruh fasilitas dilaksanakan sesuai jadwal yang telah ditetapkan. Seluruh pemegang tiket wajib hadir tepat waktu dan mengikuti alur acara yang telah ditentukan oleh penyelenggara.</li>
+                        <li>Keterlambatan akan mengakibatkan fasilitas yang terlewat dianggap hangus. Aktivitas yang telah dimulai atau selesai tidak dapat diulang, dijadwalkan ulang, maupun diikuti dari awal.</li>
+                        <li>Penyelenggara berhak melakukan penyesuaian akses peserta demi menjaga kelancaran dan ketepatan waktu pelaksanaan acara.</li>
+                    </ul>
+                    <h3>Informasi Nomor Kursi dan Nomor Antrean</h3>
+                    <p><strong>Nomor Kursi</strong></p>
+                    <ul>
+                        <li>Nomor kursi untuk kategori Teman TULUS Tribun, Tribun Tengah, Tribun Kanan, dan Tribun Kiri akan ditentukan secara otomatis oleh sistem berdasarkan urutan waktu pembelian.</li>
+                        <li>Penempatan kursi dimulai dari barisan paling depan.</li>
+                        <li>Apabila membeli lebih dari 1 (satu) tiket dalam satu transaksi, kursi akan diupayakan bersebelahan selama masih tersedia.</li>
+                        <li>Nomor kursi akan diinformasikan paling lambat H-7 sebelum acara melalui e-tiket masing-masing.</li>
+                    </ul>
+                    <p><strong>Nomor Antrean</strong></p>
+                    <ul>
+                        <li>Nomor antrean untuk kategori Teman TULUS Festival akan diatur otomatis oleh sistem, berdasarkan waktu pembelian.</li>
+                        <li>Nomor antrean hanya menentukan urutan masuk ke area Teman TULUS Festival dan bukan posisi berdiri selama pertunjukan berlangsung.</li>
+                        <li>Penonton wajib hadir sesuai jadwal antrean yang akan diumumkan. Apabila terlambat hadir, panitia berhak menempatkan penonton di antrean paling belakang dan/atau mengikuti gelombang/kelas masuk berikutnya.</li>
+                        <li>Penonton tidak dapat meminta kembali urutan antrean sesuai nomor antrean awal.</li>
+                        <li>Nomor antrean tidak dapat dipindahtangankan dan dilarang menitipkan antrean.</li>
+                        <li>Nomor antrean akan diinformasikan H-7 acara yang dapat dilihat melalui e-tiket masing-masing.</li>
+                    </ul>
+                    <h3>Proses Masuk Acara dan Aturan Gelang Tiket</h3>
+                    <ul>
+                        <li>Penonton wajib membawa identitas asli (KTP, SIM, atau Paspor) yang sesuai dengan data pada tiket, karena tiket tidak dapat dipindahtangankan.</li>
+                        <li>Panitia berhak melakukan verifikasi identitas sewaktu-waktu.</li>
+                        <li>Tiket dengan data yang tidak sesuai dapat ditolak tanpa pengembalian dana.</li>
+                        <li>Gelang tiket yang sudah dipasang tidak boleh dilepas.</li>
+                        <li>Gelang tiket yang rusak, putus, hilang, atau dipindahtangankan tidak akan diganti.</li>
+                        <li>Penonton tanpa gelang tiket tidak diperkenankan memasuki area acara.</li>
+                    </ul>
+                    <h3>Aksesibilitas untuk Anak dan Penonton Berkebutuhan Khusus</h3>
+                    <p><strong>Anak</strong></p>
+                    <ul>
+                        <li>Anak-anak sangat disarankan untuk menggunakan pelindung pendengaran (earplugs atau earmuffs) selama pertunjukan berlangsung.</li>
+                        <li>Pertunjukan akan menampilkan suara dengan volume tinggi dan efek cahaya yang intens.</li>
+                        <li>Orang tua atau pendamping bertanggung jawab memastikan kondisi fisik dan kenyamanan anak selama berada di area pertunjukan.</li>
+                        <li>Orang tua atau pendamping disarankan untuk mempertimbangkan kesiapan anak sebelum menghadiri pertunjukan.</li>
+                        <li>Orang tua atau pendamping wajib mendampingi anak selama berada di area acara dan tidak meninggalkan anak tanpa pengawasan.</li>
+                    </ul>
+                    <p><strong>Penonton Berkebutuhan Khusus</strong></p>
+                    <ul>
+                        <li>Area khusus bagi penonton berkebutuhan khusus tersedia dalam jumlah terbatas dan hanya diperuntukkan bagi pemegang tiket FESTIVAL.</li>
+                        <li>Seluruh penonton WAJIB membeli kategori FESTIVAL.</li>
+                        <li>Untuk seluruh pendamping, WAJIB membeli tiket di kategori yang sama.</li>
+                        <li>Jumlah pendamping maksimal 1 orang.</li>
+                        <li>Sangat disarankan berkonsultasi dengan dokter sebelum menghadiri pertunjukan.</li>
+                        <li>Penyelenggara tidak bertanggung jawab atas risiko kesehatan akibat menghadiri pertunjukan.</li>
+                        <li>Untuk informasi lebih lanjut dan pemesanan, silakan menghubungi cs@tiketmart.com dengan subjek FESTIVAL TEMAN TULUS - KEBUTUHAN KHUSUS serta melampirkan surat keterangan dokter yang sah.</li>
+                        <li>*Apabila kuota sudah penuh atau Anda tidak memenuhi persyaratan, penyelenggara acara berhak menolak permintaan tersebut.</li>
+                    </ul>
+                    <h3>Peringatan Keselamatan</h3>
+                    <ul>
+                        <li>Pertunjukan akan menampilkan cahaya intens dan suara keras yang dapat menyebabkan gangguan kesehatan, terutama bagi penonton dengan epilepsi fotosensitif, gangguan pendengaran, dan gangguan sensorik lainnya.</li>
+                        <li>Harap gunakan ear protection jika memiliki sensitivitas berlebih terhadap suara keras.</li>
+                        <li>Penonton dengan kondisi medis serius (gangguan jantung, tekanan darah tinggi, gangguan pernapasan) sangat disarankan untuk tidak menghadiri pertunjukan.</li>
+                        <li>Setiap penonton bertanggung jawab atas keselamatan diri sendiri.</li>
+                    </ul>
+                    <h3>Informasi Penonton</h3>
+                    <ul>
+                        <li>Tidak tersedia tempat penitipan barang. Hindari membawa koper, tas besar, atau barang berukuran besar.</li>
+                        <li>Tiket hanya berlaku untuk pemilik terdaftar. Tiket yang digandakan akan dibatalkan tanpa pengembalian dana.</li>
+                        <li>Penonton wajib mengikuti seluruh petunjuk dari petugas keamanan dan panitia, tidak melakukan tindakan provokatif, dan tidak memanjat panggung atau area terlarang.</li>
+                        <li>Panitia berhak menolak masuk atau mengeluarkan penonton tanpa pengembalian dana jika melanggar ketentuan.</li>
+                    </ul>
+                    <h3>Barang-Barang Dilarang Dibawa</h3>
+                    <ul>
+                        <li>Makanan dan minuman dari luar area acara.</li>
+                        <li>Minuman beralkohol dan narkoba.</li>
+                        <li>Senjata tajam, senjata api, maupun benda berbahaya lainnya.</li>
+                        <li>Penunjuk laser (laser pointer), kembang api, petasan, dan benda peledak.</li>
+                        <li>Kamera profesional (SLR/DSLR), drone, tripod, monopod, kamera aksi (GoPro dan sejenisnya).</li>
+                        <li>Peralatan perekam suara atau video, tablet, laptop, perangkat elektronik berukuran besar.</li>
+                        <li>Payung berukuran besar, hewan peliharaan, serta brosur atau pamflet tanpa izin.</li>
+                        <li>Tumbler yang berisi cairan selain air mineral.</li>
+                    </ul>
+                    <h3>Keadaan Kahar (Force Majeure)</h3>
+                    <ul>
+                        <li>Dalam keadaan kahar (force majeure), termasuk namun tidak terbatas pada bencana alam, pandemi, kebijakan pemerintah, kerusuhan, perang, cuaca ekstrem, atau keadaan lain di luar kendali penyelenggara, penyelenggara berhak mengubah jadwal, tata letak, maupun format acara.</li>
+                        <li>Penyelenggara juga berhak mengubah Syarat & Ketentuan tanpa pemberitahuan terlebih dahulu. Setiap pembaruan akan diinformasikan melalui kanal resmi promotor.</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer-section">
+            <div class="footer-label">Diselenggarakan Oleh</div>
+            <div class="footer-logos">
+                <div class="organizer-logo">SERAYA LIVE</div>
+                <div class="organizer-logo">TEMAN TULUS</div>
+            </div>
+            <div class="footer-label">Didukung Oleh</div>
+            <div class="footer-logos">
+                <div class="partner-logo">TIKETMART</div>
+            </div>
+            <div class="customer-service">CUSTOMER SERVICE</div>
+        </footer>
+    </div>
+</body>
+</html>

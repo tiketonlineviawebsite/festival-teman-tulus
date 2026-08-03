@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pembelian - Eksklusif BCA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1A1A1A;
+            --text-muted: #6B7280;
+            --card-bg: rgba(255, 255, 255, 0.90);
+            --card-border: rgba(255, 255, 255, 0.6);
+            --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.08);
+            --bca-blue: #0033a0;
+            --bca-blue-light: #0056b3;
+            --input-bg: #F7F8FA;
+            --input-border: #E5E7EB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, 
+                #B8BBC4 0%, #A4B0BE 15%, #8ED5F7 30%, #8FD9FF 45%, 
+                #A9D9C5 60%, #B8E400 80%, #D8F500 100%
+            );
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 440px;
+            background: var(--card-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            padding: 48px 32px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 32px;
+            color: var(--bca-blue);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: opacity 0.2s ease;
+        }
+        .back-link:hover { opacity: 0.8; }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .form-header p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .form-box {
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px 18px;
+            font-size: 15px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            border: 1.5px solid var(--input-border);
+            border-radius: 14px;
+            background-color: var(--input-bg);
+            color: var(--primary-dark);
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            background-color: #FFFFFF;
+            border-color: var(--bca-blue);
+            box-shadow: 0 0 0 4px rgba(0, 51, 160, 0.1);
+            outline: none;
+        }
+
+        .divider {
+            height: 1px;
+            background: #E5E7EB;
+            margin: 32px 0;
+        }
+
+        .secondary-ticket {
+            background: #FAFBFC;
+            border: 1.5px dashed #D1D5DB;
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 16px;
+        }
+
+        .secondary-ticket h4 {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .payment-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        .qris-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .qris-image {
+            width: 240px;
+            height: 240px;
+            object-fit: contain;
+            border-radius: 20px;
+            border: 1px solid #E5E7EB;
+            padding: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+
+        .qris-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 16px;
+            max-width: 280px;
+            line-height: 1.6;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            font-size: 15px;
+            font-weight: 800;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, var(--bca-blue), var(--bca-blue-light));
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 51, 160, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 51, 160, 0.4);
+        }
+
+        .info-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 24px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <a href="index.html" class="back-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Kembali
+        </a>
+        
+        <div class="form-header">
+            <h1>Eksklusif BCA</h1>
+            <p>Isi data diri dengan benar sesuai identitas (KTP/SIM/Paspor).</p>
+        </div>
+
+        <form class="form-box" action="#" method="POST" onsubmit="alert('Formulir BCA berhasil dikirim (Simulasi)!'); window.location.href='index.html'; return false;">
+            
+            <div class="form-group">
+                <label for="qty">Jumlah Tiket</label>
+                <select id="qty" name="qty" class="input-field" onchange="generateForms()">
+                    <option value="1">1 Tiket</option>
+                    <option value="2">2 Tiket</option>
+                    <option value="3">3 Tiket</option>
+                    <option value="4">4 Tiket</option>
+                    <option value="5">5 Tiket</option>
+                    <option value="6">6 Tiket</option>
+                    <option value="7">7 Tiket</option>
+                    <option value="8">8 Tiket</option>
+                    <option value="9">9 Tiket</option>
+                    <option value="10">10 Tiket</option>
+                </select>
+            </div>
+
+            <h4 style="font-size: 16px; margin-bottom: 20px; color: #333; font-weight: 700;">Data Penonton 1:</h4>
+            
+            <div class="form-group">
+                <label for="nama1">Nama Lengkap</label>
+                <input type="text" id="nama1" name="nama1" class="input-field" placeholder="Masukkan nama lengkap" required>
+            </div>
+
+            <div class="form-group">
+                <label for="id_type1">Jenis Identitas</label>
+                <select id="id_type1" name="id_type1" class="input-field" required>
+                    <option value="KTP">KTP</option>
+                    <option value="SIM">SIM</option>
+                    <option value="Paspor">Paspor</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="id_number1">Nomor Identitas</label>
+                <input type="text" id="id_number1" name="id_number1" class="input-field" placeholder="Masukkan nomor identitas" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Alamat Email</label>
+                <input type="email" id="email" name="email" class="input-field" placeholder="contoh@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Nomor WhatsApp</label>
+                <input type="tel" id="phone" name="phone" class="input-field" placeholder="0812xxxxxxx" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bca_acc">Nomor Rekening BCA (Opsional)</label>
+                <input type="text" id="bca_acc" name="bca_acc" class="input-field" placeholder="Untuk verifikasi jalur eksklusif">
+            </div>
+
+            <div id="dynamic-tickets"></div>
+
+            <div class="divider"></div>
+
+            <div class="payment-title">Pembayaran via QRIS</div>
+            <div class="qris-wrapper">
+                <img src="qris-festival.png" alt="QRIS Pembayaran" class="qris-image">
+                <p class="qris-note">Silakan scan kode QRIS di atas menggunakan aplikasi BCA Mobile atau e-wallet Anda untuk melakukan pembayaran.</p>
+            </div>
+
+            <button type="submit" class="btn-submit">Saya Sudah Bayar / Konfirmasi</button>
+        </form>
+
+        <p class="info-note">
+            *Maksimal pembelian 10 tiket per transaksi.<br>
+            Pastikan data sudah benar, tidak dapat diubah setelah transaksi.
+        </p>
+    </div>
+
+    <script>
+        function generateForms() {
+            var qty = document.getElementById("qty").value;
+            var container = document.getElementById("dynamic-tickets");
+            container.innerHTML = ''; 
+            
+            for (var i = 2; i <= qty; i++) {
+                var ticketHtml = `
+                    <div class="secondary-ticket">
+                        <h4>Data Penonton ${i}:</h4>
+                        <div class="form-group">
+                            <label for="nama${i}">Nama Lengkap</label>
+                            <input type="text" id="nama${i}" name="nama${i}" class="input-field" placeholder="Masukkan nama lengkap" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_number${i}">Nomor Identitas</label>
+                            <input type="text" id="id_number${i}" name="id_number${i}" class="input-field" placeholder="Masukkan nomor identitas" required>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += ticketHtml;
+            }
+        }
+    </script>
+</body>
+</html>

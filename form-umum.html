@@ -15,14 +15,12 @@
   * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif; }
   body { background: var(--bg-main); color: var(--text-main); padding-bottom: 120px; overflow-x: hidden; -webkit-font-smoothing:antialiased; }
   .container { max-width: 900px; margin: auto; }
-
   .topbar { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: #fff; border-bottom: 1px solid var(--card-border); position: sticky; top: 0; z-index: 100; }
   .logo { font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-size: 24px; color: var(--primary); letter-spacing: -1px; text-decoration: none; }
   .logo span { color: var(--text-main); }
   .topbar-right { display: flex; align-items: center; gap: 12px; }
   .lang-selector { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--text-muted); cursor:pointer; padding:7px 10px; border:1px solid var(--card-border); border-radius:4px; background:var(--card-bg); }
   .user-icon { width:36px; height:36px; border:1px solid var(--card-border); border-radius:50%; display:grid; place-items:center; color:var(--text-muted); cursor:pointer; background:var(--card-bg); }
-
   .banner img { width: 100%; max-height: 350px; object-fit: cover; display: block; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
   .hero-card { background: #fff; margin: -40px 20px 20px; padding: 25px; border-radius: 8px; position: relative; z-index: 2; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.04); border: 1px solid var(--card-border); }
   .hero-card h2 { font-size: 24px; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
@@ -30,42 +28,39 @@
   .event-info { display: flex; justify-content: center; gap: 16px; margin-top: 15px; flex-wrap: wrap; color: var(--text-muted); font-size: 13px; font-weight: 500; }
   .event-info div { display: flex; align-items: center; gap: 6px; }
   .event-info i { color: var(--primary); }
-
   .header { padding: 10px 25px 5px; }
   .header h1 { font-size: 22px; font-weight: 800; }
   .header p { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
-
   .card { background: #fff; border: 1px solid var(--card-border); border-radius: 8px; padding: 24px; margin: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
   .title { font-size: 15px; font-weight: 700; margin-bottom: 16px; color: var(--text-main); display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--text-main); padding-bottom: 10px; }
   .title i { color: var(--primary); }
-  
   .form-group { margin-bottom: 16px; }
   .form-group label { display: block; font-weight: 600; font-size: 13px; margin-bottom: 8px; color: var(--text-main); }
   .input-icon-wrap { position: relative; display: flex; align-items: center; }
   .input-icon { position: absolute; left: 16px; font-size: 14px; color: var(--text-muted); pointer-events: none; }
-
-  input, select {
-    width: 100%; padding: 12px 16px 12px 44px; border-radius: 6px; border: 1px solid var(--card-border);
-    background: #fff; font-size: 14px; transition: 0.2s; color: var(--text-main);
-  }
+  input, select { width: 100%; padding: 12px 16px 12px 44px; border-radius: 6px; border: 1px solid var(--card-border); background: #fff; font-size: 14px; transition: 0.2s; color: var(--text-main); }
   input:focus, select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
   input.error, select.error { border-color: var(--error); background: #FFF0F0; animation: shake 0.4s; }
   @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
 
-  .summary-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px; color: var(--text-muted); }
-  .summary-row strong { color: var(--text-main); font-weight: 600; }
-  .total { font-size: 16px; font-weight: 800; color: var(--text-main); border-top: 1px dashed var(--card-border); margin-top: 8px; padding-top: 14px; }
-  .total span { color: var(--primary); font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 20px; }
+  .cart-table { width: 100%; border-collapse: collapse; }
+  .cart-table th { text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); padding: 8px 0; border-bottom: 1px solid var(--card-border); }
+  .cart-table th:last-child, .cart-table td:last-child { text-align: right; }
+  .cart-table td { padding: 12px 0; font-size: 14px; color: var(--text-main); border-bottom: 1px solid #F4F5F7; vertical-align: middle; }
+  .cart-table td:last-child { font-weight: 700; white-space: nowrap; }
+  .cart-table .qty-badge { display: inline-flex; align-items: center; justify-content: center; background: var(--primary-light); color: var(--primary-dark); font-weight: 800; font-size: 13px; width: 28px; height: 28px; border-radius: 6px; }
+  .cart-edit-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--primary); text-decoration: none; margin-bottom: 16px; cursor: pointer; }
+  .cart-edit-link:hover { text-decoration: underline; }
+  .total-row { display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: 800; color: var(--text-main); border-top: 1px dashed var(--card-border); margin-top: 8px; padding-top: 14px; }
+  .total-row span:last-child { color: var(--primary); font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 20px; }
 
   .check { display: flex; gap: 12px; margin-top: 12px; align-items: flex-start; background: #FAFAFA; padding: 14px; border-radius: 6px; border: 1px solid var(--card-border); }
   .check input { width: 18px; height: 18px; min-width: 18px; accent-color: var(--primary); cursor: pointer; margin-top: 2px; }
   .check label { font-size: 13px; color: var(--text-muted); cursor: pointer; line-height: 1.5; }
-
   .bottom { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; padding: 12px 20px; box-shadow: 0 -2px 12px rgba(0,0,0,0.06); border-top: 1px solid var(--card-border); z-index: 100; }
   .btn { width: 100%; max-width: 900px; margin: auto; display: flex; justify-content: center; align-items: center; gap: 10px; padding: 14px 32px; border: none; border-radius: 6px; background: var(--btn-primary); color: var(--btn-primary-text); font-size: 15px; font-weight: 700; cursor: pointer; transition: 0.2s; }
   .btn:hover:not(:disabled) { background: #D8F500; }
   .btn:disabled { background: #d9d9d9; cursor: not-allowed; }
-
   .loading-overlay { visibility: hidden; opacity: 0; position: fixed; inset: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); z-index: 99999; display: flex; justify-content: center; align-items: center; flex-direction: column; transition: opacity 0.3s ease; }
   .loading-overlay.active { visibility: visible; opacity: 1; }
   .spinner-box { width: 70px; height: 70px; display: flex; justify-content: center; align-items: center; border-radius: 50%; background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.08); margin-bottom: 20px; }
@@ -73,7 +68,6 @@
   @keyframes spin { to { transform: rotate(360deg); } }
   .loading-text { font-size: 16px; font-weight: 700; color: var(--text-main); }
   .loading-sub { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
-
   @media (max-width: 480px) {
     .hero-card { margin: -20px 14px 16px; padding: 20px; }
     .hero-card h2 { font-size: 20px; }
@@ -82,6 +76,7 @@
     .header h1 { font-size: 20px; }
     .card { margin: 14px; padding: 18px; }
     .btn { font-size: 14px; padding: 12px 20px; }
+    .cart-table th:nth-child(2), .cart-table td:nth-child(2) { display: none; }
   }
 </style>
 </head>
@@ -96,10 +91,7 @@
 </div>
 
 <div class="container">
-  <div class="banner">
-    <img src="banner.png" alt="Festival Teman Tulus">
-  </div>
-
+  <div class="banner"><img src="banner.png" alt="Festival Teman Tulus"></div>
   <div class="hero-card">
     <h2>Festival Teman Tulus</h2>
     <p>Perayaan Perjalanan Kolaborasi Komunitas</p>
@@ -116,26 +108,8 @@
 
   <div class="card">
     <div class="title"><i class="fa-solid fa-receipt"></i> Ringkasan Pesanan</div>
-    <div class="form-group">
-      <label>Jenis Tiket</label>
-      <div class="input-icon-wrap">
-        <i class="fa-solid fa-ticket input-icon"></i>
-        <select id="tiketSelect">
-          <option value="Teman Tulus Festival|885000">Teman Tulus Festival (Rp 885.000)</option>
-          <option value="Tribun Tengah|785000">Tribun Tengah (Rp 785.000)</option>
-          <option value="Tribun Kiri|735000">Tribun Kiri (Rp 735.000)</option>
-          <option value="Tribun Kanan|735000">Tribun Kanan (Rp 735.000)</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Jumlah Tiket (Maks 10)</label>
-      <div class="input-icon-wrap">
-        <i class="fa-solid fa-sort-numeric-up input-icon"></i>
-        <input id="qtyInput" type="number" value="1" min="1" max="10">
-      </div>
-    </div>
-    <div class="summary-row total"><span>Total Pembayaran</span><span id="totalBayar">Rp 885.000</span></div>
+    <a class="cart-edit-link" onclick="window.history.back()"><i class="fa-solid fa-pen-to-square"></i> Ubah pilihan tiket</a>
+    <div id="cartSummary"></div>
   </div>
 
   <div class="card">
@@ -198,47 +172,50 @@
 </div>
 
 <script>
-  const tiketSelect = document.getElementById('tiketSelect');
-  const qtyInput = document.getElementById('qtyInput');
-  const totalBayarEl = document.getElementById('totalBayar');
+  var cart = JSON.parse(localStorage.getItem('etatix_cart') || 'null');
 
-  function hitungTotal() {
-    const [namaTiket, harga] = tiketSelect.value.split('|');
-    let qty = parseInt(qtyInput.value) || 1;
-    if (qty > 10) { qty = 10; qtyInput.value = 10; }
-    if (qty < 1) { qty = 1; qtyInput.value = 1; }
-    const total = qty * parseInt(harga);
-    totalBayarEl.innerText = 'Rp ' + total.toLocaleString('id-ID');
+  if (!cart || !cart.items || cart.items.length === 0) {
+    alert('Tidak ada tiket yang dipilih. Silakan pilih tiket terlebih dahulu.');
+    window.location.href = 'tiket-umum.html';
+    throw new Error('No cart data');
   }
-  tiketSelect.addEventListener('change', hitungTotal);
-  qtyInput.addEventListener('input', hitungTotal);
-  hitungTotal(); // Init
 
-  const namaEl = document.getElementById('nama');
-  const identitasEl = document.getElementById('identitas');
-  const nomorIdEl = document.getElementById('nomorId');
-  const emailEl = document.getElementById('email');
-  const waEl = document.getElementById('wa');
-  const setuju1El = document.getElementById('setuju1');
-  const setuju2El = document.getElementById('setuju2');
-  const loadingEl = document.getElementById('loading');
-  const lanjutBtn = document.getElementById('lanjut');
+  var summaryHtml = '<table class="cart-table">';
+  summaryHtml += '<thead><tr><th>Jenis Tiket</th><th>Harga</th><th>Qty</th><th>Subtotal</th></tr></thead><tbody>';
+  cart.items.forEach(function(item) {
+    summaryHtml += '<tr>';
+    summaryHtml += '<td><strong>' + item.jenis + '</strong></td>';
+    summaryHtml += '<td>Rp ' + item.harga.toLocaleString('id-ID') + '</td>';
+    summaryHtml += '<td><span class="qty-badge">' + item.qty + '</span></td>';
+    summaryHtml += '<td>Rp ' + item.subtotal.toLocaleString('id-ID') + '</td>';
+    summaryHtml += '</tr>';
+  });
+  summaryHtml += '</tbody></table>';
+  summaryHtml += '<div class="total-row"><span>Total Pembayaran (' + cart.totalQty + ' tiket)</span><span>Rp ' + cart.totalPrice.toLocaleString('id-ID') + '</span></div>';
+  document.getElementById('cartSummary').innerHTML = summaryHtml;
+
+  var namaEl = document.getElementById('nama');
+  var identitasEl = document.getElementById('identitas');
+  var nomorIdEl = document.getElementById('nomorId');
+  var emailEl = document.getElementById('email');
+  var waEl = document.getElementById('wa');
+  var setuju1El = document.getElementById('setuju1');
+  var setuju2El = document.getElementById('setuju2');
+  var loadingEl = document.getElementById('loading');
+  var lanjutBtn = document.getElementById('lanjut');
 
   lanjutBtn.onclick = function() {
-    const wajib = [namaEl, identitasEl, nomorIdEl, emailEl, waEl];
-    let isValid = true;
-    wajib.forEach(field => field.classList.remove('error'));
+    var wajib = [namaEl, identitasEl, nomorIdEl, emailEl, waEl];
+    var isValid = true;
+    wajib.forEach(function(field) { field.classList.remove('error'); });
 
-    for (const field of wajib) {
-      if (!field.value.trim()) {
-        field.classList.add('error');
-        isValid = false;
-      }
+    for (var i = 0; i < wajib.length; i++) {
+      if (!wajib[i].value.trim()) { wajib[i].classList.add('error'); isValid = false; }
     }
 
     if (!isValid) {
       alert('Mohon lengkapi semua data wajib (berwarna merah).');
-      const firstError = document.querySelector('.error');
+      var firstError = document.querySelector('.error');
       if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
@@ -252,28 +229,30 @@
     lanjutBtn.disabled = true;
     lanjutBtn.innerText = 'Memproses...';
 
-    const [namaTiket, harga] = tiketSelect.value.split('|');
-    const qty = parseInt(qtyInput.value);
-    const total = qty * parseInt(harga);
-
-    const orderData = {
-      nama: namaEl.value, wa: waEl.value, email: emailEl.value,
-      identitas: identitasEl.value, nomor_id: nomorIdEl.value,
-      jenis_tiket: namaTiket, jumlah_tiket: qty, total_bayar: total
+    var orderData = {
+      nama: namaEl.value,
+      wa: waEl.value,
+      email: emailEl.value,
+      identitas: identitasEl.value,
+      nomor_id: nomorIdEl.value,
+      cart: cart
     };
+    localStorage.setItem('etatix_order', JSON.stringify(orderData));
 
+    var formData = {
+      nama: orderData.nama, wa: orderData.wa, email: orderData.email,
+      identitas: orderData.identitas, nomor_id: orderData.nomor_id,
+      tiket_detail: cart.items.map(function(i) { return i.jenis + ' x' + i.qty; }).join(', '),
+      jumlah_tiket: cart.totalQty, total_bayar: cart.totalPrice
+    };
     fetch('https://formspree.io/f/mojojdpl', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(orderData)
-    }).catch(e => console.log('Formspree error:', e));
+      body: JSON.stringify(formData)
+    }).catch(function(e) { console.log('Formspree error:', e); });
 
-    const qrisParams = new URLSearchParams({
-      nama: namaEl.value, wa: waEl.value, jenis: namaTiket, qty: qty, total: total
-    });
-    
-    setTimeout(() => {
-      window.location.href = 'qris.html?' + qrisParams.toString();
+    setTimeout(function() {
+      window.location.href = 'qris.html';
     }, 1500);
   };
 </script>

@@ -16,8 +16,8 @@
             --umum-yellow: #D8F500;
             --umum-yellow-light: #B8E400;
             --umum-green-dark: #65A30D;
-            --input-bg: #F7F8FA;
-            --input-border: #E5E7EB;
+            --gold-dark: #B8860B;
+            --gold-light: #FFD700;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         body {
@@ -31,9 +31,81 @@
         .page-header { text-align: center; margin-bottom: 32px; }
         .page-header h1 { font-size: 26px; font-weight: 800; color: var(--primary-dark); margin-bottom: 8px; letter-spacing: -0.5px; }
         .page-header p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
-        .seating-map { background: #FFFFFF; border-radius: 24px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 36px; border: 1px solid rgba(0,0,0,0.05); }
+        
+        .seating-map { background: #FFFFFF; border-radius: 24px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 28px; border: 1px solid rgba(0,0,0,0.05); }
         .map-title { text-align: center; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 16px; }
         .map-image { width: 100%; height: auto; border-radius: 12px; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+
+        /* === ANIMASI PREMIUM ALERT (BERGERAK/MARQUEE) === */
+        .premium-alert {
+            background: linear-gradient(135deg, #000000 0%, #1A1A1A 100%);
+            border: 1px solid var(--gold-dark);
+            border-radius: 12px;
+            padding: 14px 0;
+            margin-bottom: 36px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 20px rgba(184, 134, 11, 0.3);
+            animation: floatUpDown 3s ease-in-out infinite;
+        }
+        .premium-alert::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.4), transparent);
+            transform: skewX(-20deg);
+            animation: sweepLight 3.5s infinite;
+            z-index: 2;
+        }
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 12s linear infinite;
+        }
+        .marquee-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-right: 15px;
+        }
+        .premium-alert .icon {
+            font-size: 16px;
+            filter: drop-shadow(0 0 5px var(--gold-light));
+        }
+        .premium-alert p {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerText 3s linear infinite;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes sweepLight {
+            0% { left: -150%; }
+            60% { left: 150%; }
+            100% { left: 150%; }
+        }
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        @keyframes shimmerText {
+            to { background-position: 200% center; }
+        }
+        /* === END ANIMASI === */
+
         .ticket-list { display: flex; flex-direction: column; gap: 16px; }
         .ticket-card { background: #FFFFFF; border: 1.5px solid #E5E7EB; border-radius: 20px; padding: 24px; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
         .ticket-card:hover { border-color: var(--umum-yellow-light); box-shadow: 0 10px 25px rgba(184, 228, 0, 0.15); }
@@ -69,21 +141,34 @@
         </a>
         
         <div class="page-header">
-            <h1>Tiket Umum</h1>
-            <p>Pilih kategori tiket yang tersedia untuk jalur pembelian Umum.</p>
+            <h1>Festival Teman Tulus</h1>
+            <p>10 Oktober 2026 · Tennis Indoor Senayan<br>Pilih kategori tiket jalur Umum.</p>
         </div>
 
         <div class="seating-map">
             <div class="map-title">Denah Tennis Indoor Senayan</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/2545970d-a326-4b7c-89ed-98ba0d1db670.jpg?auth_key=1885789772-bcff158f6ec84baa9cc025d5c1b2297f-0-68b96428eceb7f9f1d8b06b737e3efff" alt="Denah Tennis Indoor Senayan" class="map-image">
+            <img src="https://z-cdn-media.chatglm.cn/files/c34dbb0f-ffb8-4bdf-84af-72d949d8d182.jpg?auth_key=1885942877-2f10e27501a048fd84beb54b23eee412-0-b6a31526e9dd574a215d9538699e8222" alt="Denah Festival Teman Tulus" class="map-image">
+        </div>
+
+        <!-- BANNER PREMIUM ANIMATION (DI BAWAH GAMBAR) -->
+        <div class="premium-alert">
+            <div class="marquee-track">
+                <div class="marquee-content">
+                    <span class="icon">⚠️</span>
+                    <p>Tiket Tambahan Tersisa Hanya Untuk 10 Peserta Lagi</p>
+                    <span class="icon">⚠️</span>
+                    <p>Tiket Tambahan Tersisa Hanya Untuk 10 Peserta Lagi</p>
+                </div>
+            </div>
         </div>
 
         <div class="ticket-list">
+            <!-- 1. Teman Tulus Tribun -->
             <div class="ticket-card">
                 <div class="ticket-info">
-                    <h3>Teman Tulus Festival</h3>
-                    <p>Kategori Berdiri (Festival)</p>
-                    <div class="price-tag">IDR 885.000</div>
+                    <h3>Teman Tulus Tribun</h3>
+                    <p>Kategori Duduk (Premium)</p>
+                    <div class="price-tag">IDR 2.350.000</div>
                     <div class="ticket-action">
                         <button class="btn-select" id="btn-select-1" onclick="toggleQty(1)">Pilih Tiket</button>
                         <div class="qty-control" id="qty-control-1">
@@ -95,11 +180,12 @@
                 </div>
             </div>
 
+            <!-- 2. Teman Tulus Festival -->
             <div class="ticket-card">
                 <div class="ticket-info">
-                    <h3>Tribun Tengah</h3>
-                    <p>Kategori Duduk (Tengah)</p>
-                    <div class="price-tag">IDR 785.000</div>
+                    <h3>Teman Tulus Festival</h3>
+                    <p>Kategori Berdiri (Festival)</p>
+                    <div class="price-tag">IDR 885.000</div>
                     <div class="ticket-action">
                         <button class="btn-select" id="btn-select-2" onclick="toggleQty(2)">Pilih Tiket</button>
                         <div class="qty-control" id="qty-control-2">
@@ -111,11 +197,12 @@
                 </div>
             </div>
 
+            <!-- 3. Tribun Tengah -->
             <div class="ticket-card">
                 <div class="ticket-info">
-                    <h3>Tribun Kiri</h3>
-                    <p>Kategori Duduk (Sisi Kiri)</p>
-                    <div class="price-tag">IDR 735.000</div>
+                    <h3>Tribun Tengah</h3>
+                    <p>Kategori Duduk (Tengah)</p>
+                    <div class="price-tag">IDR 785.000</div>
                     <div class="ticket-action">
                         <button class="btn-select" id="btn-select-3" onclick="toggleQty(3)">Pilih Tiket</button>
                         <div class="qty-control" id="qty-control-3">
@@ -127,11 +214,12 @@
                 </div>
             </div>
 
+            <!-- 4. Festival -->
             <div class="ticket-card">
                 <div class="ticket-info">
-                    <h3>Tribun Kanan</h3>
-                    <p>Kategori Duduk (Sisi Kanan)</p>
-                    <div class="price-tag">IDR 735.000</div>
+                    <h3>Festival</h3>
+                    <p>Kategori Berdiri (Reguler)</p>
+                    <div class="price-tag">IDR 685.000</div>
                     <div class="ticket-action">
                         <button class="btn-select" id="btn-select-4" onclick="toggleQty(4)">Pilih Tiket</button>
                         <div class="qty-control" id="qty-control-4">
@@ -142,10 +230,44 @@
                     </div>
                 </div>
             </div>
+
+            <!-- 5. Tribun Kiri -->
+            <div class="ticket-card">
+                <div class="ticket-info">
+                    <h3>Tribun Kiri</h3>
+                    <p>Kategori Duduk (Sisi Kiri)</p>
+                    <div class="price-tag">IDR 550.000</div>
+                    <div class="ticket-action">
+                        <button class="btn-select" id="btn-select-5" onclick="toggleQty(5)">Pilih Tiket</button>
+                        <div class="qty-control" id="qty-control-5">
+                            <button class="qty-btn" onclick="changeQty(5, -1)">−</button>
+                            <span class="qty-num" id="qty-num-5">1</span>
+                            <button class="qty-btn" onclick="changeQty(5, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Tribun Kanan -->
+            <div class="ticket-card">
+                <div class="ticket-info">
+                    <h3>Tribun Kanan</h3>
+                    <p>Kategori Duduk (Sisi Kanan)</p>
+                    <div class="price-tag">IDR 550.000</div>
+                    <div class="ticket-action">
+                        <button class="btn-select" id="btn-select-6" onclick="toggleQty(6)">Pilih Tiket</button>
+                        <div class="qty-control" id="qty-control-6">
+                            <button class="qty-btn" onclick="changeQty(6, -1)">−</button>
+                            <span class="qty-num" id="qty-num-6">1</span>
+                            <button class="qty-btn" onclick="changeQty(6, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <p class="footer-note">
-            *Harga belum termasuk pajak & biaya admin.<br>
+            *Harga tiket belum termasuk pajak dan biaya layanan.<br>
             Maksimal pembelian 10 tiket per transaksi.
         </p>
     </div>
@@ -161,12 +283,14 @@
     <script>
         // Data tiket Umum
         const ticketData = {
-            1: { jenis: 'Teman Tulus Festival', harga: 885000 },
-            2: { jenis: 'Tribun Tengah', harga: 785000 },
-            3: { jenis: 'Tribun Kiri', harga: 735000 },
-            4: { jenis: 'Tribun Kanan', harga: 735000 }
+            1: { jenis: 'Teman Tulus Tribun', harga: 2350000 },
+            2: { jenis: 'Teman Tulus Festival', harga: 885000 },
+            3: { jenis: 'Tribun Tengah', harga: 785000 },
+            4: { jenis: 'Festival', harga: 685000 },
+            5: { jenis: 'Tribun Kiri', harga: 550000 },
+            6: { jenis: 'Tribun Kanan', harga: 550000 }
         };
-        let quantities = { 1: 0, 2: 0, 3: 0, 4: 0 };
+        let quantities = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
         const MAX_TICKETS = 10;
 
         function toggleQty(id) {
